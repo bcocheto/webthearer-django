@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div>
+    <h1>Categories</h1>
+    </div>
+    {% for category in list %}
+        <h2>{{category.getTitle}} - {{category.getDescription}}</h2>
+        <img src="{% static 'img/' %}{{category.getImagePath}}">
+        {% for movie in category.getMovieList%}
+        <div>
+            <ul>
+            <h4>{{movie.getTitle}}</h4>
+            <img src="{% static 'img/' %}{{movie.getImagePath}}" >
+            <button><a href="{% url 'movies' movie.getId %}">See More</a></button>
+            </ul>
+        </div>
+        <hr>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>
